@@ -39,6 +39,16 @@ if(MSVC)
 	PRIVATE
 		BDLL_EXPORTS
 	)
+
+	elseif(${CMAKE_CXX_COMPILER_ID} MATCHES Clang)  # Clang + AppleClang
+    # ...
+elseif(${CMAKE_CXX_COMPILER_ID} MATCHES GNU)    # GNU C Compiler
+    # ...
+	target_compile_definitions(b_dll
+	PRIVATE
+		BDLL_EXPORTS
+	)
+	message(STATUS "this is a_dll------" ${CMAKE_CURRENT_SOURCE_DIR})  
 endif()
 
 install(DIRECTORY       ${CMAKE_SOURCE_DIR}/include

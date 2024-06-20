@@ -1,5 +1,6 @@
 ﻿// dllmain.cpp : DLL 애플리케이션의 진입점을 정의합니다.
 //#include "pch.h"
+#if defined(_MSC_VER)
 #include <windows.h>
 
 BOOL APIENTRY DllMain( HMODULE hModule,
@@ -17,4 +18,4 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     }
     return TRUE;
 }
-
+#endif // 

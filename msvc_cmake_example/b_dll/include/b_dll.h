@@ -4,11 +4,24 @@
 // 이렇게 하면 소스 파일에 이 파일이 포함된 다른 모든 프로젝트에서는
 // BDLL_API 함수를 DLL에서 가져오는 것으로 표시되는 반면, 이 DLL에서는
 // 이 매크로로 정의된 기호가 내보내지는 것으로 표시됩니다.
-#ifdef BDLL_EXPORTS
-#define BDLL_API __declspec(dllexport)
-#else
-#define BDLL_API __declspec(dllimport)
-#endif
+
+// https://stackoverflow.com/questions/2164827/explicitly-exporting-shared-library-functions-in-linux 
+// Explicitly exporting shared library functions in Linux
+#if defined(_MSC_VER)
+	#ifdef BDLL_EXPORTS
+	#define BDLL_API __declspec(dllexport)
+	#else
+	#define BDLL_API __declspec(dllimport)
+	#endif
+#elif defined(__GNUC__)
+	#ifdef BDLL_EXPORTS
+	#define BDLL_API __attribute__((visibility("default")))
+	#else
+	#define BDLL_API
+	#endif
+
+#endif// 
+
 
 // 이 클래스는 dll에서 내보낸 것입니다.
 class BDLL_API Cbdll {
