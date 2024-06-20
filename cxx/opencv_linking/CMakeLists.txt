@@ -28,3 +28,9 @@ target_link_libraries(opencv_test_cmake
 opencv_world460
 	
 )
+
+# add_library, add_executable에 사용했던 이름
+# 빌드 결과물을 설치
+install(TARGETS         opencv_test_cmake  
+        DESTINATION     ${CMAKE_INSTALL_PREFIX}/bin
+)
